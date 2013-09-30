@@ -1,0 +1,14 @@
+#!upstart
+
+description "fluentd"
+author      "jbirmingham"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop  on shutdown
+
+respawn                # restart when job dies
+respawn limit 5 60     # give up restart after 5 respawns in 60 seconds
+
+script
+ su -c "fluentd >> <%= node['fluentd']['log']%>" fluent
+end script
