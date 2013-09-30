@@ -10,7 +10,6 @@ user "fluent" do
 end
 
 group "fluent" do
-  system true
 end
 
 directory "/etc/fluent" do
