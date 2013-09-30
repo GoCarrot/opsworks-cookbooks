@@ -9,6 +9,10 @@ user "fluent" do
   system true
 end
 
+group "fluent" do
+  system true
+end
+
 directory "/etc/fluent" do
   owner "fluent"
   group "fluent"
