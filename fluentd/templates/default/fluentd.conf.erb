@@ -9,6 +9,4 @@ stop  on shutdown
 respawn                # restart when job dies
 respawn limit 5 60     # give up restart after 5 respawns in 60 seconds
 
-script
- su -c "fluentd >> <%= node['fluentd']['log']%>" fluent
-end script
+exec sudo -u fluent "/usr/local/bin/fluentd" >> <%= node['fluentd']['log']%>
