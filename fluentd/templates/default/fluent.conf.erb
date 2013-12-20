@@ -91,6 +91,7 @@
 #  compress gz
 #</match>
 
+<% if node[:fluentd][:mysql] %>
 <match parsnip.*>
   type mysql
   host <%= node[:fluentd][:mysql][:host] %>
@@ -105,7 +106,9 @@
   retry_limit 17
   buffer_queue_limit 128
 </match>
+<% end %>
 
+<% if node[:fluentd][:sidekiq] %>
 <match sidekiq>
   type sidekiq
   url <%= node[:fluentd][:sidekiq][:url] %>
@@ -114,3 +117,4 @@
   retry_limit 17
   buffer_queue_limit 128
 </match>
+<% end %>
