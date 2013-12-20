@@ -106,3 +106,11 @@
   buffer_queue_limit 128
 </match>
 
+<match sidekiq>
+  type sidekiq
+  url <%= node[:fluentd][:sidekiq][:url] %>
+  flush_interval 60s
+  retry_wait 1s
+  retry_limit 17
+  buffer_queue_limit 128
+</match>
