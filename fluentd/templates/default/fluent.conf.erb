@@ -111,7 +111,7 @@
 <% if node[:fluentd][:sidekiq] %>
 <match sidekiq>
   type sidekiq
-  url <%= node[:fluentd][:sidekiq][:url] %>
+  redis_url <%= node[:fluentd][:sidekiq][:url] %>
   flush_interval 60s
   retry_wait 1s
   retry_limit 17
