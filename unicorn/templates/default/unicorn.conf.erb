@@ -49,6 +49,13 @@ after_fork do |server, worker|
   end
   defined?(Analytics) and Analytics.init(secret: ENV["ANALYTICS_SECRET"])
 
+  if $redis
+    $redis.quit
+    redis_url = (Rails.env.production? || Rails.env.stage?) ? ENV["OPENREDIS_URL"] : "redis://localhost:6379/0"
+    $redis = Redis.connect(url: redis_url)
+  end
+
+
   # if preload_app is true, then you may also want to check and
   # restart any other shared sockets/descriptors such as Memcached,
   # and Redis.  TokyoCabinet file handles are safe to reuse
