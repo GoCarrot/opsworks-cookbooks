@@ -6,13 +6,11 @@
 # First some standard log files.  Log by facility.
 #
 auth,authpriv.*			/media/ephemeral0/log/auth.log
-*.*;auth,authpriv.none		-/media/ephemeral0/log/syslog
 #cron.*				/media/ephemeral0/log/cron.log
 daemon.*			-/media/ephemeral0/log/daemon.log
 kern.*				-/media/ephemeral0/log/kern.log
 lpr.*				-/media/ephemeral0/log/lpr.log
 mail.*				-/media/ephemeral0/log/mail.log
-user.*				-/media/ephemeral0/log/user.log
 
 #
 # Logging for the mail system.  Split it up so that
@@ -29,16 +27,6 @@ news.crit			/media/ephemeral0/log/news/news.crit
 news.err			/media/ephemeral0/log/news/news.err
 news.notice			-/media/ephemeral0/log/news/news.notice
 
-#
-# Some "catch-all" log files.
-#
-*.=debug;\
-	auth,authpriv.none;\
-	news.none;mail.none	-/media/ephemeral0/log/debug
-*.=info;*.=notice;*.=warn;\
-	auth,authpriv.none;\
-	cron,daemon.none;\
-	mail,news.none		-/media/ephemeral0/log/messages
 
 #
 # Emergencies are sent to everybody logged in.
@@ -56,7 +44,7 @@ news.notice			-/media/ephemeral0/log/news/news.notice
 
 # The named pipe /dev/xconsole is for the `xconsole' utility.  To use it,
 # you must invoke `xconsole' with the `-file' option:
-# 
+#
 #    $ xconsole -file /dev/xconsole [...]
 #
 # NOTE: adjust the list below, or you'll go crazy if you have a reasonably
