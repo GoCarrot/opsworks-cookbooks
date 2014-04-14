@@ -27,7 +27,7 @@ end
 group "zookeeper" do
 end
 
-directory "/etc/zookeeper" do
+directory "/etc/zookeeper/conf" do
   owner "root"
   group "root"
   mode 0755
@@ -35,7 +35,7 @@ directory "/etc/zookeeper" do
 end
 
 %w{ configuration.xsl log4j.properties environment }.each do |templ|
-   template "/etc/zookeeper/#{templ}" do
+   template "/etc/zookeeper/conf/#{templ}" do
       source "#{templ}.erb"
       mode "0644"
       owner "root"
