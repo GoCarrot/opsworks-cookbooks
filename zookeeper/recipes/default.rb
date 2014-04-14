@@ -27,6 +27,14 @@ end
 group "zookeeper" do
 end
 
+directory "/etc/zookeeper" do
+  owner "root"
+  group "root"
+  mode 0755
+  action :create
+end
+
+
 directory "/etc/zookeeper/conf" do
   owner "root"
   group "root"
