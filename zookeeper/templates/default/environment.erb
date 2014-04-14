@@ -4,7 +4,7 @@ ZOOCFGDIR=/etc/$NAME/conf
 # TODO this is really ugly
 # How to find out, which jars are needed?
 # seems, that log4j requires the log4j.properties file to be in the classpath
-CLASSPATH="$ZOOCFGDIR:/usr/share/java/lib/jline-0.9.94.jar:/usr/share/java/lib/log4j-1.2.16.jar:/usr/share/java/lib/netty-3.7.0.Final.jar:/usr/share/java/lib/slf4j-api-1.6.1.jar:/usr/share/java/lib/slf4j-log4j12-1.6.1.jar:/usr/share/java/zookeeper-3.4.6.jar"
+CLASSPATH="$ZOOCFGDIR:/usr/share/java/jline-0.9.94.jar:/usr/share/java/log4j-1.2.16.jar:/usr/share/java/netty-3.7.0.Final.jar:/usr/share/java/slf4j-api-1.6.1.jar:/usr/share/java/slf4j-log4j12-1.6.1.jar:/usr/share/java/zookeeper-3.4.6.jar"
 
 ZOOCFG="$ZOOCFGDIR/zoo.cfg"
 ZOO_LOG_DIR=/var/log/$NAME

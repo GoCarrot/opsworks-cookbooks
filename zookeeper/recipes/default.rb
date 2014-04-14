@@ -14,7 +14,7 @@ end
 bash "copy zookeeper root" do
   user "root"
   cwd "/tmp"
-  code %(cp -r #{::File.dirname(src_filepath)}/* /usr/share/java/)
+  code %(cp -r zookeeper-3.4.6/* /usr/share/java/ && cp -r zookeeper-3.4.5/lib/* /usr/share/java/)
 end
 
 user "zookeeper" do
