@@ -13,6 +13,6 @@ dataDir=/var/lib/zookeeper
 # the port at which the clients will connect
 clientPort=2181
 
-<% node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| instance_config["private_ip"]}.push(node[:opsworks][:instance][:private_ip]).uniq.sort.each_with_index do |index, private_ip| %>
+<% node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| instance_config["private_ip"]}.push(node[:opsworks][:instance][:private_ip]).uniq.sort.each_with_index do |private_ip, index| %>
 server.<%= index + 1 %>=<%= private_ip %>:2888:3888
 <% end %>
