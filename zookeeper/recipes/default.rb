@@ -1,7 +1,7 @@
   src_filepath  = "#{Chef::Config['file_cache_path'] || '/tmp'}/zookeeper-3.4.6.tar.gz"
   remote_file src_filepath do
-    path node['zookeeper']['url']
-    checksum node['zookeeper']['checksum']
+    path node[:zookeeper][:url]
+    checksum node[:zookeeper][:checksum]
     backup false
   end
 
@@ -40,7 +40,6 @@ end
       mode "0644"
       owner "root"
       group "root"
-      variables(template_variables)
    end
 end
 
