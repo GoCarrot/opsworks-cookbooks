@@ -8,14 +8,14 @@ import com.twitter.ostrich.admin.config.AdminServiceConfig
 new SnowflakeConfig {
   serverPort = 7609
   datacenterId = 0
-  workerIdMap = Map(<%= node[:opsworks][:layers][:snowflake][:instances].map {|instance_name, instance_config| instance_name }.each_with_index.map { |name, i| "#{i} -> \"#{name}\""}.join(',') %>)
+  workerIdMap = Map(<%= node[:opsworks][:layers][:snowflake][:instances].map {|instance_name, instance_config| instance_name }.sort.each_with_index.map { |name, i| "#{i} -> \"#{name}\""}.join(',') %>)
   workerIdZkPath = "/snowflake-servers"
   skipSanityChecks = false
   startupSleepMs = 10000
   thriftServerThreads = 2
 
   zookeeperClientConfig = new ZookeeperClientConfig {
-    hostList = "<%= node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| instance_config["private_ip"]}.join(',') %>"
+    hostList = "<%= node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| instance_config["private_ip"]}.sort.join(',') %>"
   }
 
   reporterConfig = new ReporterConfig {
