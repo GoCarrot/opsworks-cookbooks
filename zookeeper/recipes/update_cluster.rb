@@ -1,8 +1,15 @@
+service "zookeeper" do
+  provider Chef::Provider::Service::Upstart
+  action :enable
+  supports :status => true, :restart => true
+end
+
 template "/etc/zookeeper/conf/zoo.cfg" do
   source "zoo.cfg.erb"
   owner "root"
   group "root"
   mode 0664
+  notifies :restart, resources(:service => "zookeeper")
 end
 
 template "/var/lib/zookeeper/myid" do
@@ -10,11 +17,5 @@ template "/var/lib/zookeeper/myid" do
   owner "zookeeper"
   group "zookeeper"
   mode 0664
-end
-
-service "zookeeper" do
-  provider Chef::Provider::Service::Upstart
-  action :restart
-  running true
-  supports :status => true, :restart => true
+  notifies :restart, resources(:service => "zookeeper")
 end
