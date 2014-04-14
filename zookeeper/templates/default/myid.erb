@@ -1,0 +1,1 @@
+<%= node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| instance_config["private_ip"]}.sort.index(node[:opsworks][:instance][:private_ip]) + 1 %>

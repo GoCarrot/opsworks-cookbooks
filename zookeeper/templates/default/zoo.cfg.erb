@@ -1,0 +1,18 @@
+# The number of milliseconds of each tick
+tickTime=2000
+# The number of ticks that the initial
+# synchronization phase can take
+initLimit=10
+# The number of ticks that can pass between
+# sending a request and getting an acknowledgement
+syncLimit=5
+# the directory where the snapshot is stored.
+# do not use /tmp for storage, /tmp here is just
+# example sakes.
+dataDir=/var/lib/zookeeper
+# the port at which the clients will connect
+clientPort=2181
+
+<% node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| instance_config["private_ip"]}.sort.each_with_index do |index, private_ip| %>
+server.<%= index + 1 %>=<%= private_ip %>:2888:3888
+<% end %>
