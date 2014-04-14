@@ -8,7 +8,7 @@
 bash "untar zookeeper" do
   user "root"
   cwd "/tmp"
-  code %(tar zxf #{::File.basename(src_filepath)} -C #{::File.dirname(src_filepath)})
+  code %(tar zxf #{src_filepath})
 end
 
 bash "copy zookeeper root" do
