@@ -8,5 +8,5 @@ respawn
 limit nofile 8192 8192
 
 script
-    exec sudo -u snowflake /usr/bin/java -cp /usr/share/snowflake/*:/usr/share/snowflake/libs:* com.twitter.service.snowflake.SnowflakeServer -f /etc/snowflake/snowflake.scala
+    exec sudo -u snowflake /usr/bin/java -cp /usr/share/snowflake/libs/*:/usr/share/snowflake/* com.twitter.service.snowflake.SnowflakeServer -f /etc/snowflake/snowflake.scala
 end script
