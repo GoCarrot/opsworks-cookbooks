@@ -1,0 +1,1 @@
+<%= node[:opsworks][:layers][:snowflake][:instances].map {|instance_name, instance_config| instance_name }.sort.join(',') %>
