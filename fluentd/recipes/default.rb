@@ -1,8 +1,6 @@
-bash "install-fluentd-and-friends" do
-  code "gem install fluentd --no-ri --no-rdoc"
-  code "gem install fluent-plugin-mysql --no-ri --no-rdoc"
-  code "gem install fluent-plugin-sidekiq --no-ri --no-rdoc"
-end
+gem_package "fluentd"
+gem_package "fluent-plugin-mysql"
+gem_package "fluent-plugin-sidekiq"
 
 user "fluent" do
   comment "fluent Administrator"
