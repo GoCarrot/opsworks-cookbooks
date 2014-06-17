@@ -3,6 +3,8 @@
 # Recipe:: default
 #
 
+include_recipe "opsworks_agent_monit"
+
 node[:deploy].each do |application, deploy|
   next if !deploy[:sidekiq]
   template "#{node[:monit][:conf_dir]}/sidekiq_#{application}.monitrc" do
