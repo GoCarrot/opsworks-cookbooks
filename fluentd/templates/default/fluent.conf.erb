@@ -116,5 +116,6 @@
   retry_wait 1s
   retry_limit 17
   buffer_queue_limit 128
+  max_batch_size <%= node[:fluentd][:sidekiq][:batch_size] || 10 %>
 </match>
 <% end %>
