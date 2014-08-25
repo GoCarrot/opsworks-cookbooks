@@ -40,20 +40,6 @@ bash "copy snowflake root" do
   code %(cp -r snowflake-package-dist/* /usr/share/snowflake)
 end
 
-directory "/etc/snowflake" do
-  owner "root"
-  group "root"
-  mode 0755
-  action :create
-end
-
-directory "/etc/snowflake" do
-  owner "root"
-  group "root"
-  mode 0755
-  action :create
-end
-
 directory "/var/log/snowflake" do
   owner "snowflake"
   group "snowflake"
