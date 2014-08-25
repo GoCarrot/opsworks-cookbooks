@@ -47,7 +47,6 @@ directory "/etc/snowflake" do
   action :create
 end
 
-
 directory "/etc/snowflake" do
   owner "root"
   group "root"
