@@ -45,3 +45,6 @@ when "ubuntu"
 when "arch"
   default["rsyslog"]["service_name"] = "rsyslogd"
 end
+
+default["rsyslog"]["loggly_token"] = nil
+default["rsyslog"]["loggly_tag"] = "MAIN"
