@@ -38,7 +38,7 @@ $UDPServerRun <%= node['rsyslog']['port'] %>
 ###########################
 
 <% if node['rsyslog']['loggly_token'] %>
-$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% <%= node['rsyslog']['loggly_token' %>]@41058 tag=\"<%= node['rsyslog']['loggly_tag'] %>\"] %msg%\n"
+$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% <%= node['rsyslog']['loggly_token'] %>@41058 tag=\"<%= node['rsyslog']['loggly_tag'] %>\"] %msg%\n"
 <% end %>
 
 #
