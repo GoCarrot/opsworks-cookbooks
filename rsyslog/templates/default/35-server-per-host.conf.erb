@@ -22,10 +22,6 @@ $template PerHostNewsNotice,"<%= @log_dir %>/<%= @per_host_dir %>/news.notice"
 $template PerHostDebug,"<%= @log_dir %>/<%= @per_host_dir %>/debug"
 $template PerHostMessages,"<%= @log_dir %>/<%= @per_host_dir %>/messages"
 
-<% if node['rsyslog']['loggly_token'] %>
-$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% <%= node['rsyslog']['loggly_token' %>]@41058 tag=\"<%= node['rsyslog']['loggly_tag'] %>\"] %msg%\n"
-<% end %>
-
 auth,authpriv.*         ?PerHostAuth
 *.*;auth,authpriv.none  -?PerHostSyslog
 cron.*                  ?PerHostCron

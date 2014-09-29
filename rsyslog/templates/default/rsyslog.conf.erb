@@ -37,6 +37,10 @@ $UDPServerRun <%= node['rsyslog']['port'] %>
 #### GLOBAL DIRECTIVES ####
 ###########################
 
+<% if node['rsyslog']['loggly_token'] %>
+$template LogglyFormat,"<%pri%>%protocol-version% %timestamp:::date-rfc3339% %HOSTNAME% %app-name% %procid% %msgid% <%= node['rsyslog']['loggly_token' %>]@41058 tag=\"<%= node['rsyslog']['loggly_tag'] %>\"] %msg%\n"
+<% end %>
+
 #
 # Use default timestamp format.
 # To enable high precision timestamps, comment out the following line.
