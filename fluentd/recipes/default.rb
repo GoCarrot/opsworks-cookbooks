@@ -1,4 +1,7 @@
-gem_package "fluentd"
+gem_package "fluentd" do
+  version "0.10.57"
+end
+
 gem_package "fluent-plugin-mysql"
 gem_package "fluent-plugin-sidekiq"
 
