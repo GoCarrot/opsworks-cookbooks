@@ -2,5 +2,5 @@ check process sidekiq_<%= @app_name %>
   with pidfile <%= @deploy[:deploy_to] %>/shared/pids/sidekiq.pid
   start program = "/usr/bin/sudo su deploy -c 'cd <%= @deploy[:deploy_to] %>/current; <% if node[:librato][@app_name] %> LIBRATO_USER=<%= node[:librato][@app_name][:user] %> LIBRATO_TOKEN=<%= node[:librato][@app_name][:token] %> LIBRATO_AUTORUN=1 <% end %> RACK_ENV=production PATH=/usr/local/bin:$PATH NSS_SDB_USE_CACHE=YES bundle exec sidekiq <% if @deploy[:sidekiq_require] %> -r  <%= "#{@deploy[:deploy_to]}/current/#{@deploy[:sidekiq_require]}" %> <% end %> -d -C config/sidekiq.yml -P <%= @deploy[:deploy_to] %>/shared/pids/sidekiq.pid -L <%= @deploy[:deploy_to] %>/shared/log/sidekiq.log'" with timeout 90 seconds
   stop program = "/usr/bin/sudo su deploy -c '/bin/kill -TERM `cat <%= @deploy[:deploy_to] %>/shared/pids/sidekiq.pid`'" with timeout 180 seconds
-  if totalmem is greater than <%= @deploy[:sidekiq_memory_limit_in_mb] || 300 %>MB for 2 cycles then restart # eating up memory?
+  if totalmem is greater than <%= @deploy[:sidekiq_memory_limit_in_mb] || 300 %> MB for 2 cycles then restart # eating up memory?
   group sidekiq_<%= @app_name %>
