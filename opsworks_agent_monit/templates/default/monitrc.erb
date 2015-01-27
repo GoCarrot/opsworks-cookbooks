@@ -1,5 +1,5 @@
 set daemon 60
-set mailserver localhost
+set mailserver <% if !node [:monit][:mailserver] %>localhost<% else %><%= node[:monit][:mailserver][:host] %> port <%= node[:monit][:mailserver][:port] %> username "<%= node[:monit][:mailserver][:username] %>" password "<%= node[:monit][:mailserver][:password] %>" <% end %>
 set eventqueue
     basedir /var/monit
     slots 100
