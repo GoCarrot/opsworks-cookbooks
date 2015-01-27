@@ -1,0 +1,1 @@
+<%= node[:opsworks][:layers][:zookeeper][:instances].map {|instance_name, instance_config| "#{instance_name}:2181" }.sort.join(',') %>
