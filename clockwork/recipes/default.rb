@@ -10,6 +10,5 @@ node[:deploy].each do |application, deploy|
     pid_dir "#{deploy[:deploy_to]}/shared/pids"
     log_dir "#{deploy[:deploy_to]}/shared/logs"
     user "deploy"
-    group "deploy"
   end
 end
