@@ -5,6 +5,7 @@
 
 node[:deploy].each do |application, deploy|
   next if !deploy[:sidekiq]
+  next if !deploy[:scm]
   template "#{node[:monit][:conf_dir]}/sidekiq_#{application}.monitrc" do
     owner 'root'
     group 'root'
