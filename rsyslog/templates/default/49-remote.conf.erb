@@ -1,6 +1,0 @@
-<% case @protocol -%>
-<% when "tcp" -%>
-*.* @@<%= @server %>:<%= node['rsyslog']['port'] %><%= if node['rsyslog']['loggly_token']; ";LogglyFormat"; end %>
-<% when "udp" -%>
-*.* @<%= @server %>:<%= node['rsyslog']['port'] %><%= if node['rsyslog']['loggly_token']; ";LogglyFormat"; end %>
-<% end -%>
