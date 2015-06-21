@@ -100,7 +100,7 @@
   password <%= node[:fluentd][:mysql][:password] %>
   table <%= node[:fluentd][:mysql][:table] %>
   key_names <%= node[:fluentd][:mysql][:key_names] %>
-  sql INSERT IGNORE INTO <%= node[:fluentd][:mysql][:table] %> (<%= node[:fluentd][:mysql][:key_names] %>) VALUES (<%= ("?," * node[:fluentd][:mysql][:key_names].length)[0..-2] %>)
+  sql INSERT IGNORE INTO <%= node[:fluentd][:mysql][:table] %> (<%= node[:fluentd][:mysql][:key_names] %>) VALUES (<%= ("?," * node[:fluentd][:mysql][:key_names].split(",").length)[0..-2] %>)
   flush_interval 10s
   retry_wait 1s
   retry_limit 17
