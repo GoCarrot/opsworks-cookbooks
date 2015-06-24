@@ -4,7 +4,7 @@ DEPENDENCIES
     revision: 34806f62f703b785e6a701c13ed81f2ee5c7e15d
   opsworks_clockwork
     git: git://github.com/gallodigital/opsworks_clockwork_cookbook.git
-    revision: d99a58330ad16c07d99e901fd2dfd083d14d0111
+    revision: 57793a532f38a56dfaefea45599f61d031a5c859
 
 GRAPH
   aws-elb-registration (0.2.1)
