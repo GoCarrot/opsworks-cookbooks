@@ -29,11 +29,4 @@ new SnowflakeConfig {
   admin = new AdminServiceConfig {
     httpPort = 9990
   }
-
-  loggers = new LoggerConfig {
-    handlers = new FileHandlerConfig {
-      level = Level.TRACE
-      filename = "/var/log/snowflake/snowflake.log"
-    }
-  }
 }
