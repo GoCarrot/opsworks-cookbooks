@@ -1,5 +1,5 @@
 check process sidekiq_<%= @app_name %>_<%= @idx %>
-  with pidfile <%= @deploy[:deploy_to] %>/shared/pids/sidekiq_<%= idx %>.pid
+  with pidfile <%= @deploy[:deploy_to] %>/shared/pids/sidekiq_<%= @idx %>.pid
   start program = "/usr/bin/sudo su deploy -c 'cd <%= @deploy[:deploy_to] %>/current; <% if node[:librato][@app_name] %> LIBRATO_USER=<%= node[:librato][@app_name][:user] %> LIBRATO_TOKEN=<%= node[:librato][@app_name][:token] %> LIBRATO_AUTORUN=1 <% end %> RACK_ENV=production PATH=/usr/local/bin:$PATH NSS_SDB_USE_CACHE=YES RUBY_GC_OLDMALLOC_LIMIT_MAX=32000000 RUBY_GC_HEAP_GROWTH_FACTOR=1.25 bundle exec sidekiq -t <%= @deploy[:sidekiq_timeout_in_seconds] || 180 %> <% if @deploy[:sidekiq_require] %> -r  <%= "#{@deploy[:deploy_to]}/current/#{@deploy[:sidekiq_require]}" %> <% end %> -d -C config/sidekiq.yml -P <%= @deploy[:deploy_to] %>/shared/pids/sidekiq_<%= @idx %>.pid -L <%= @deploy[:deploy_to] %>/shared/log/sidekiq_<%= @idx %>.log'" with timeout 90 seconds
   stop program = "/usr/bin/sudo su deploy -c '/bin/kill -TERM `cat <%= @deploy[:deploy_to] %>/shared/pids/sidekiq_<%= @idx %>.pid`'" with timeout <%= (@deploy[:sidekit_timeout_in_seconds] || 180) + 5 %> seconds
   if totalmem is greater than <%= @deploy[:sidekiq_memory_limit_in_mb] || 300 %> MB for 2 cycles then restart # eating up memory?
