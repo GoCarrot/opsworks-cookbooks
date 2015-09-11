@@ -6,7 +6,7 @@
 node[:deploy].each do |application, deploy|
   next if !deploy[:sidekiq]
   next if !deploy[:scm]
-  (deploy[:sidekq_count] || 1).to_i.times do |idx|
+  (deploy[:sidekiq_count] || 1).to_i.times do |idx|
     template "#{node[:monit][:conf_dir]}/sidekiq_#{application}_#{idx}.monitrc" do
       owner 'root'
       group 'root'
