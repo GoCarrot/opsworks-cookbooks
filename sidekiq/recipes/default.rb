@@ -6,15 +6,18 @@
 node[:deploy].each do |application, deploy|
   next if !deploy[:sidekiq]
   next if !deploy[:scm]
-  template "#{node[:monit][:conf_dir]}/sidekiq_#{application}.monitrc" do
-    owner 'root'
-    group 'root'
-    mode 0644
-    source "monitrc.conf.erb"
-    variables({
-      :app_name => application,
-      :deploy => deploy
-    })
+  (deploy[:sidekq_count] || 1).to_i.times do |idx|
+    template "#{node[:monit][:conf_dir]}/sidekiq_#{application}_#{idx}.monitrc" do
+      owner 'root'
+      group 'root'
+      mode 0644
+      source "monitrc.conf.erb"
+      variables({
+        :app_name => application,
+        :deploy => deploy,
+        :idx => idx
+      })
+    end
   end
 
   execute "ensure-sidekiq-is-setup-with-monit" do
