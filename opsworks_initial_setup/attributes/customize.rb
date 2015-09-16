@@ -9,3 +9,5 @@
 # The following shows how to override OpsWorks default TCP keepalive timeout:
 #
 #normal[:opsworks_initial_setup][:sysctl]['net.ipv4.tcp_keepalive_time'] = 2048
+
+default[:opsworks_initial_setup][:limits][:nofile] = 262144
