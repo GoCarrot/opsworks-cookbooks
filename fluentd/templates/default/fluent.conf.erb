@@ -108,6 +108,24 @@
 </match>
 <% end %>
 
+<% if node[:fluentd][:http] %>
+<% node[:fluentd][:http].each do |conf| %>
+<match <%= conf[:tag] %>>
+  type bufferize
+  buffer_type file
+  buffer_path /var/log/fluentd/<%=config[:tag]%>_http.buffer
+  <config>
+    type http
+    endpoint_url <%= conf[:endpoint_url]
+    <% if conf[:http_method %>
+    http_method <%= config[:http_method] %>
+    <% end %>
+    raise_on_error true
+  </config>
+</match>
+<% end %>
+<% end %>
+
 <% if node[:fluentd][:sidekiq] %>
 <match sidekiq>
   type sidekiq

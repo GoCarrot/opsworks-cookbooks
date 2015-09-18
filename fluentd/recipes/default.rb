@@ -4,6 +4,9 @@ end
 
 gem_package "fluent-plugin-mysql"
 gem_package "fluent-plugin-sidekiq"
+gem_package "fluent-plugin-mysql-bulk"
+gem_package "fluent-plugin-bufferize"
+gem_package "fluent-plugin-out-http"
 
 user "fluent" do
   comment "fluent Administrator"
