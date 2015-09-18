@@ -114,6 +114,7 @@
   type bufferize
   buffer_type file
   buffer_path /var/log/fluent/<%=conf[:tag]%>_http.buffer
+  flush_interval 1s
   <config>
     type http
     endpoint_url <%= conf[:endpoint_url] %>
