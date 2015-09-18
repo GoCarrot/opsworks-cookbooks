@@ -116,7 +116,7 @@
   buffer_path /var/log/fluentd/<%=conf[:tag]%>_http.buffer
   <config>
     type http
-    endpoint_url <%= conf[:endpoint_url]
+    endpoint_url <%= conf[:endpoint_url] %>
     <% if conf[:http_method] %>
     http_method <%= conf[:http_method] %>
     <% end %>
