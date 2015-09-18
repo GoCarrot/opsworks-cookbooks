@@ -113,12 +113,12 @@
 <match <%= conf[:tag] %>>
   type bufferize
   buffer_type file
-  buffer_path /var/log/fluentd/<%=config[:tag]%>_http.buffer
+  buffer_path /var/log/fluentd/<%=conf[:tag]%>_http.buffer
   <config>
     type http
     endpoint_url <%= conf[:endpoint_url]
     <% if conf[:http_method %>
-    http_method <%= config[:http_method] %>
+    http_method <%= conf[:http_method] %>
     <% end %>
     raise_on_error true
   </config>
