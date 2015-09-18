@@ -117,7 +117,7 @@
   <config>
     type http
     endpoint_url <%= conf[:endpoint_url]
-    <% if conf[:http_method %>
+    <% if conf[:http_method] %>
     http_method <%= conf[:http_method] %>
     <% end %>
     raise_on_error true
