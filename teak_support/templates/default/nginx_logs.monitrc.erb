@@ -1,0 +1,2 @@
+ check filesystem rootfs with path /dev/xvda1
+  if space usage > 80% for 5 times within 15 cycles then exec "/usr/bin/sudo su -c 'rm -fr /var/log/nginx/*log; /etc/init.d/nginx reload_logs'"
