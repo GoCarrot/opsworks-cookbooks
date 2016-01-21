@@ -92,20 +92,24 @@
 #</match>
 
 <% if node[:fluentd][:mysql] %>
-<match parsnip.*>
+<% node[:fluentd][:mysql].each do |conf| %>
+<match <%= conf[:tag] %>>
   type mysql
-  host <%= node[:fluentd][:mysql][:host] %>
-  database <%= node[:fluentd][:mysql][:database] %>
-  username <%= node[:fluentd][:mysql][:username] %>
-  password <%= node[:fluentd][:mysql][:password] %>
-  table <%= node[:fluentd][:mysql][:table] %>
-  key_names <%= node[:fluentd][:mysql][:key_names] %>
-  sql INSERT IGNORE INTO <%= node[:fluentd][:mysql][:table] %> (<%= node[:fluentd][:mysql][:key_names] %>) VALUES (<%= ("?," * node[:fluentd][:mysql][:key_names].split(",").length)[0..-2] %>)
+  buffer_type file
+  buffer_path /var/log/fluent/<%= conf[:tag] %>_mysql.buffer
+  host <%= conf[:host] %>
+  database <%= conf[:database] %>
+  username <%= conf[:username] %>
+  password <%= conf[:password] %>
+  table <%= conf[:table] %>
+  key_names <%= conf[:key_names] %>
+  sql INSERT IGNORE INTO <%= conf[:table] %> (<%= node[:fluentd][:mysql][:key_names] %>) VALUES (<%= ("?," * conf[:key_names].split(",").length)[0..-2] %>)
   flush_interval 10s
   retry_wait 1s
   retry_limit 17
   buffer_queue_limit 128
 </match>
+<% end %>
 <% end %>
 
 <% if node[:fluentd][:http] %>
