@@ -103,7 +103,7 @@
   password <%= conf[:password] %>
   table <%= conf[:table] %>
   key_names <%= conf[:key_names] %>
-  sql INSERT IGNORE INTO <%= conf[:table] %> (<%= node[:fluentd][:mysql][:key_names] %>) VALUES (<%= ("?," * conf[:key_names].split(",").length)[0..-2] %>)
+  sql INSERT IGNORE INTO <%= conf[:table] %> (<%= conf[:key_names] %>) VALUES (<%= ("?," * conf[:key_names].split(",").length)[0..-2] %>)
   flush_interval 10s
   retry_wait 1s
   retry_limit 17
