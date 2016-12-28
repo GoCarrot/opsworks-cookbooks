@@ -2,9 +2,11 @@ gem_package "fluentd" do
   version "0.12.31"
 end
 
-gem_package "fluent-plugin-mysql"
+gem_package "fluent-plugin-mysql" do
+  version "0.1.5"
+end
+
 gem_package "fluent-plugin-sidekiq"
-gem_package "fluent-plugin-mysql-bulk"
 gem_package "fluent-plugin-bufferize"
 gem_package "fluent-plugin-out-http"
 
