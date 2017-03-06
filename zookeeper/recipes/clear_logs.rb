@@ -1,4 +1,5 @@
 cron "Teak - Clear ZK Logs and Snapshots" do
+  home '/tmp'
   minute '0'
   hour '0'
   user 'zookeeper'
