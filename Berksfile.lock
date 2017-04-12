@@ -1,7 +1,7 @@
 DEPENDENCIES
   aws-elb-registration
     git: git://github.com/AlexSc/aws-elb-registration-cookbook.git
-    revision: bd7ad2b780946be3d857bb60273e7b553a7bbc92
+    revision: f9ac5800dd065629e3eb037f12bcd7abfe560ede
   opsworks_clockwork
     git: git://github.com/GoCarrot/opsworks_clockwork_cookbook.git
     revision: 57793a532f38a56dfaefea45599f61d031a5c859
