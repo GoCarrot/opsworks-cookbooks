@@ -103,6 +103,28 @@
 <% end %>
 <% end %>
 
+<% if node[:fluentd][:mysql_bulk] %>
+<% node[:fluentd][:mysql_bulk].each do |conf| %>
+<match <%= conf[:tag] %>>
+  type mysql_bulk
+  buffer_type file
+  buffer_path /var/log/fluent/<%= conf[:tag] %>_mysql.buffer
+  host <%= conf[:host] %>
+  database <%= conf[:database] %>
+  username <%= conf[:username] %>
+  password <%= conf[:password] %>
+  table <%= conf[:table] %>
+  key_names <%= conf[:key_names] %>
+  insert_ignore true
+  max_rows_per_insert 100
+  flush_interval 10s
+  retry_wait 1s
+  retry_limit 17
+  buffer_queue_limit 128
+</match>
+<% end %>
+<% end %>
+
 <% if node[:fluentd][:http] %>
 <% node[:fluentd][:http].each do |conf| %>
 <match <%= conf[:tag] %>>
