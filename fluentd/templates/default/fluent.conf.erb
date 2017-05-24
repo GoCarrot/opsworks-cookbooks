@@ -115,8 +115,9 @@
   password <%= conf[:password] %>
   table <%= conf[:table] %>
   key_names <%= conf[:key_names] %>
+  column_names <%= conf[:key_names] %>
   insert_ignore true
-  max_rows_per_insert 100
+  max_rows_per_insert <%= conf[:max_rows_per_insert] || 100 %>
   flush_interval 10s
   retry_wait 1s
   retry_limit 17
