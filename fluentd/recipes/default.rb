@@ -3,8 +3,6 @@ gem_package "fluentd" do
 end
 
 gem_package "fluent-plugin-mysql" do
-  clear_sources true
-  include_default_source false
   source "https://repo.fury.io/alexsc/"
   version "0.1.5.1"
 end
