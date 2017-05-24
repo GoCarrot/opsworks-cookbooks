@@ -155,3 +155,19 @@
   max_batch_size <%= node[:fluentd][:sidekiq][:batch_size] || 10 %>
 </match>
 <% end %>
+
+<% if node[:fluentd][:m_sidekiq] %>
+<% node[:fluentd][:m_sidekiq].each do |conf| %>
+<match <%= conf[:tag] %>>
+  type sidekiq
+  buffer_type file
+  buffer_path /var/log/fluent/<%= conf[:tag] %>_sidekiq.buffer
+  redis_url <%= conf[:url] %>
+  flush_interval <%= conf[:flush_interval] || "60s" %>
+  retry_wait 1s
+  retry_limit 17
+  buffer_queue_limit 128
+  max_batch_size <%= conf[:batch_size] || 10 %>
+</match>
+<% end %>
+<% end %>
