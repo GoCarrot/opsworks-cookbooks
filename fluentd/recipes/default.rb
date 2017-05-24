@@ -39,6 +39,7 @@ template "/etc/fluent/fluent.conf" do
   owner "fluent"
   group "fluent"
   mode 0664
+  notifies :restart, 'service[fluentd]'
 end
 
 template "/etc/init/fluentd.conf" do
