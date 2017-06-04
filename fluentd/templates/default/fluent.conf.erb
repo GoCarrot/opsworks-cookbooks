@@ -82,6 +82,21 @@
 #  compress gz
 #</match>
 
+<% if node[:fluentd][:tail] %>
+<% node[:fluentd][:tail].each do |conf| %>
+<source>
+  type tail
+  path <%= conf[:path] %>
+  pos_file /var/log/fluent/<%= conf[:path].gsub("/", ".") %>.pos
+  tag <%= conf[:tag] %>
+  format <%= conf[:format] %>
+  <% if conf[:exclude_path] %>
+  exclude_path <%= conf[:exclude_path] %>
+  <% end %>
+</source>
+<% end %>
+<% end %>
+
 <% if node[:fluentd][:mysql] %>
 <% node[:fluentd][:mysql].each do |conf| %>
 <match <%= conf[:tag] %>>
