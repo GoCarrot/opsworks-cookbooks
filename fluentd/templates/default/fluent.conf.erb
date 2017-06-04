@@ -198,5 +198,6 @@
   log_stream_name <%= conf[:log_stream_name] || node[:opsworks][:instance][:hostname] %>
   region <%= conf[:region] || node[:opsworks][:instance][:region] %>
   auto_create_stream true
+</match>
 <% end %>
 <% end %>
