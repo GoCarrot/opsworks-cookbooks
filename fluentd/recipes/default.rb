@@ -10,6 +10,7 @@ end
 gem_package "fluent-plugin-sidekiq"
 gem_package "fluent-plugin-bufferize"
 gem_package "fluent-plugin-out-http"
+gem_package "fluent-plugin-cloudwatch-logs"
 
 user "fluent" do
   comment "fluent Administrator"
