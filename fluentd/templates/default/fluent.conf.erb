@@ -196,7 +196,7 @@
   buffer_path /var/log/fluent/<%= conf[:tag] %>_cloudwatch.buffer
   log_group_name <%= conf[:log_group_name] %>
   log_stream_name <%= conf[:log_stream_name] || node[:opsworks][:instance][:hostname] %>
-  region <%= conf[:region] || node[:opsworks][:instance][:region]
+  region <%= conf[:region] || node[:opsworks][:instance][:region] %>
   auto_create_stream true
 <% end %>
 <% end %>
