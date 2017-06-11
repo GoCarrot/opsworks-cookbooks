@@ -14,7 +14,10 @@ server {
   access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
   <%end %>
 
-  keepalive_timeout 5;
+
+  <% if node[:nginx][:keepalive] == "on" %>
+  keepalive_timeout  <%= node[:nginx][:keepalive_timeout] %>;
+  <% end %>
 
   root <%= @application[:absolute_document_root] %>;
 
@@ -73,7 +76,9 @@ server {
   ssl_client_certificate /etc/nginx/ssl/<%= @application[:domains].first %>.ca;
   <% end -%>
 
-  keepalive_timeout 5;
+  <% if node[:nginx][:keepalive] == "on" %>
+  keepalive_timeout  <%= node[:nginx][:keepalive_timeout] %>;
+  <% end %>
 
   root <%= @application[:absolute_document_root] %>;
 
