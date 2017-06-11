@@ -60,6 +60,7 @@ default[:nginx][:gzip_types] = ['application/x-javascript',
 
 default[:nginx][:keepalive] = "on"
 default[:nginx][:keepalive_timeout] = 65
+default[:nginx][:keepalive_requests] = 100000
 
 default[:nginx][:worker_processes] = 10
 default[:nginx][:worker_connections] = 1024

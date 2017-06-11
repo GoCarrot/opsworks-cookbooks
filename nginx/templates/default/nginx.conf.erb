@@ -23,7 +23,8 @@ http {
   tcp_nodelay on;
 
   <% if node[:nginx][:keepalive] == "on" %>
-  keepalive_timeout  <%= node[:nginx][:keepalive_timeout] %>;
+  keepalive_timeout <%= node[:nginx][:keepalive_timeout] %>;
+  keepalive_requests <%= node[:nginx][:keepalive_requests] %>;
   <% end %>
 
   gzip  <%= node[:nginx][:gzip] %>;
