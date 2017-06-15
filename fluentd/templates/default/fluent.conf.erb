@@ -195,6 +195,7 @@
   type cloudwatch_logs
   buffer_type file
   buffer_path /var/log/fluent/<%= conf[:tag] %>_cloudwatch.buffer
+  flush_interval <%= conf[:flush_interval] || "60s" %>
   log_group_name <%= conf[:log_group_name] %>
   log_stream_name <%= conf[:log_stream_name] || node[:opsworks][:instance][:hostname] %>
   region <%= conf[:region] || node[:opsworks][:instance][:region] %>
