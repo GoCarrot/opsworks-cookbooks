@@ -12,7 +12,7 @@ define :custom_env_template do
     owner params[:deploy][:user]
     group params[:deploy][:group]
     mode "0660"
-    variables :env => params[:env]
+    variables :env => params[:env].merge(params[:deploy][:environment].to_hash)
     notifies :run, resources(:execute => "restart Rails app #{params[:application]}")
 
     only_if { File.exists?("#{params[:deploy][:deploy_to]}/shared/config") }
