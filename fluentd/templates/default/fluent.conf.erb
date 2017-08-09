@@ -150,7 +150,7 @@
   buffer_path /var/log/fluent/<%=conf[:tag]%>_http.buffer
   flush_interval 1s
   <config>
-    @type http
+    type http
     endpoint_url <%= conf[:endpoint_url] %>
     <% if conf[:http_method] %>
     http_method <%= conf[:http_method] %>
