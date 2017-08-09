@@ -10,7 +10,10 @@ end
 gem_package "fluent-plugin-sidekiq"
 gem_package "fluent-plugin-bufferize"
 gem_package "fluent-plugin-out-http"
-gem_package "fluent-plugin-cloudwatch-logs"
+gem_package "fluent-plugin-cloudwatch-logs" do
+  source "https://repo.fury.io/alexsc/"
+  version "0.4.1"
+end
 
 user "fluent" do
   comment "fluent Administrator"
