@@ -2,25 +2,25 @@
 ## built-in TCP input
 ## $ echo <json> | fluent-cat <tag>
 <source>
-  type forward
+  @type forward
 </source>
 
 ## built-in UNIX socket input
 #<source>
-#  type unix
+#  @type unix
 #</source>
 
 # HTTP input
 # http://localhost:8888/<tag>?json=<json>
 <source>
-  type http
+  @type http
   port 8888
 </source>
 
 ## File input
 ## read apache logs with tag=apache.access
 #<source>
-#  type tail
+#  @type tail
 #  format apache
 #  path /var/log/httpd-access.log
 #  tag apache.access
@@ -31,34 +31,34 @@
 # http://localhost:24220/api/plugins?type=TYPE
 # http://localhost:24220/api/plugins?tag=MYTAG
 <source>
-  type monitor_agent
+  @type monitor_agent
   bind 0.0.0.0
   port 24220
 </source>
 
 # Listen DRb for debug
 <source>
-  type debug_agent
+  @type debug_agent
   port 24230
 </source>
 
 
 ## match tag=apache.access and write to file
 #<match apache.access>
-#  type file
+#  @type file
 #  path /var/log/fluent/access
 #</match>
 
 ## match tag=debug.** and dump to console
 <match debug.**>
-  type stdout
+  @type stdout
 </match>
 
 ## match tag=myapp.** and forward and write to file
 #<match myapp.**>
-#  type copy
+#  @type copy
 #  <store>
-#    type forward
+#    @type forward
 #    host 192.168.0.13
 #    buffer_type file
 #    buffer_path /var/log/fluent/myapp-forward
@@ -66,19 +66,19 @@
 #    flush_interval 10s
 #  </store>
 #  <store>
-#    type file
+#    @type file
 #    path /var/log/fluent/myapp
 #  </store>
 #</match>
 
 ## match fluent's internal events
 #<match fluent.**>
-#  type null
+#  @type null
 #</match>
 
 ## match not matched logs and write to file
 #<match **>
-#  type file
+#  @type file
 #  path /var/log/fluent/else
 #  compress gz
 #</match>
@@ -86,7 +86,7 @@
 <% if node[:fluentd][:tail] %>
 <% node[:fluentd][:tail].each do |conf| %>
 <source>
-  type tail
+  @type tail
   path <%= conf[:path] %>
   pos_file /var/log/fluent/<%= conf[:path].gsub("/", ".") %>.pos
   tag <%= conf[:tag] %>
@@ -101,7 +101,7 @@
 <% if node[:fluentd][:mysql] %>
 <% node[:fluentd][:mysql].each do |conf| %>
 <match <%= conf[:tag] %>>
-  type mysql
+  @type mysql
   buffer_type file
   buffer_path /var/log/fluent/<%= conf[:tag] %>_mysql.buffer
   host <%= conf[:host] %>
@@ -122,7 +122,7 @@
 <% if node[:fluentd][:mysql_bulk] %>
 <% node[:fluentd][:mysql_bulk].each do |conf| %>
 <match <%= conf[:tag] %>>
-  type mysql_bulk
+  @type mysql_bulk
   buffer_type file
   buffer_path /var/log/fluent/<%= conf[:tag] %>_mysql.buffer
   host <%= conf[:host] %>
@@ -145,12 +145,12 @@
 <% if node[:fluentd][:http] %>
 <% node[:fluentd][:http].each do |conf| %>
 <match <%= conf[:tag] %>>
-  type bufferize
+  @type bufferize
   buffer_type file
   buffer_path /var/log/fluent/<%=conf[:tag]%>_http.buffer
   flush_interval 1s
   <config>
-    type http
+    @type http
     endpoint_url <%= conf[:endpoint_url] %>
     <% if conf[:http_method] %>
     http_method <%= conf[:http_method] %>
@@ -163,7 +163,7 @@
 
 <% if node[:fluentd][:sidekiq] %>
 <match sidekiq>
-  type sidekiq
+  @type sidekiq
   redis_url <%= node[:fluentd][:sidekiq][:url] %>
   flush_interval 60s
   retry_wait 1s
@@ -176,7 +176,7 @@
 <% if node[:fluentd][:m_sidekiq] %>
 <% node[:fluentd][:m_sidekiq].each do |conf| %>
 <match <%= conf[:tag] %>>
-  type sidekiq
+  @type sidekiq
   buffer_type file
   buffer_path /var/log/fluent/<%= conf[:tag] %>_sidekiq.buffer
   redis_url <%= conf[:url] %>
@@ -192,7 +192,7 @@
 <% if node[:fluentd][:cloudwatch_out] %>
 <% node[:fluentd][:cloudwatch_out].each do |conf| %>
 <match <%= conf[:tag] %>>
-  type cloudwatch_logs
+  @type cloudwatch_logs
   buffer_type file
   buffer_path /var/log/fluent/<%= conf[:tag] %>_cloudwatch.buffer
   flush_interval <%= conf[:flush_interval] || "60s" %>
