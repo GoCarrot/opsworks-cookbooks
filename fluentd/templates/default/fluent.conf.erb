@@ -1,4 +1,8 @@
 
+<system>
+  log_level <%= node[:fluentd][:log_level] %>
+</system>
+
 ## built-in TCP input
 ## $ echo <json> | fluent-cat <tag>
 <source>
