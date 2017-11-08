@@ -12,7 +12,7 @@ gem_package "fluent-plugin-bufferize"
 gem_package "fluent-plugin-out-http"
 gem_package "fluent-plugin-cloudwatch-logs" do
   source "https://repo.fury.io/alexsc/"
-  version "0.4.1"
+  version "0.4.2"
 end
 
 user "fluent" do
