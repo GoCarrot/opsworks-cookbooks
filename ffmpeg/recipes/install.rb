@@ -14,5 +14,5 @@ end
 bash "copy ffmpgeg root" do
   user "root"
   cwd "#{Chef::Config['file_cache_path'] || '/tmp'}"
-  code %(cp ffmpeg /usr/bin/ffmpeg)
+  code %(cp ffmpeg /usr/bin/ffmpeg && cp ffprobe /usr/bin/ffprobe)
 end
