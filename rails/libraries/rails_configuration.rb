@@ -40,7 +40,7 @@ module OpsWorks
     def self.bundle(app_name, app_config, app_root_path)
       if File.exists?("#{app_root_path}/Gemfile")
         Chef::Log.info("Gemfile detected. Running bundle install.")
-        bundle_command = "sudo su - #{app_config[:user]} -c 'cd #{app_root_path} && /usr/local/bin/bundle install --jobs 4 --retry 3 --path #{app_config[:home]}/.bundler/#{app_name} --without=#{app_config[:ignore_bundler_groups].join(' ')}'"
+        bundle_command = "sudo su - #{app_config[:user]} -c 'cd #{app_root_path} && /usr/local/bin/bundle install --jobs 1 --retry 3 --path #{app_config[:home]}/.bundler/#{app_name} --without=#{app_config[:ignore_bundler_groups].join(' ')}'"
         Chef::Log.info(bundle_command)
         Chef::Log.info(OpsWorks::ShellOut.shellout("#{bundle_command} 2>&1"))
       end
