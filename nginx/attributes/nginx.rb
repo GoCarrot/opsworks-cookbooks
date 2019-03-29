@@ -70,5 +70,6 @@ default[:nginx][:proxy_read_timeout] = 60
 default[:nginx][:proxy_send_timeout] = 60
 
 default[:nginx][:proxies] = {}
+default[:nginx][:default_server_app] = ''
 
 include_attribute "nginx::customize"
