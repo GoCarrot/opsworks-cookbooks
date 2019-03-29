@@ -5,8 +5,7 @@ if node[:opsworks][:instance][:layers].include?('rails-app')
     custom_env_template do
       application application
       deploy deploy
-      env node[:custom_env][application]
+      env (node[:custom_env][application] || {}).merge(deploy[:environment_variables] || {})
     end
-    
   end
 end
