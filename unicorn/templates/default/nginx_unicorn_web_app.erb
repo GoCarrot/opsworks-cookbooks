@@ -16,8 +16,14 @@ server {
 
 
   <% if node[:nginx][:keepalive] == "on" %>
+  <% if node[:nginx][:app_config] && node[:nginx][:app_config][@application_name] %>
+  <% if node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
+  keepalive_timeout <%= node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
+  <% end %>
+  <% else %>
   keepalive_timeout <%= node[:nginx][:keepalive_timeout] %>;
   keepalive_requests <%= node[:nginx][:keepalive_requests] %>;
+  <% end %>
   <% end %>
 
   root <%= @application[:absolute_document_root] %>;
