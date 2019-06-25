@@ -1,5 +1,5 @@
 template "/etc/newrelic-infra.yml" do
-    source "newrelic.cfg.erb"
+    source "newrelic-infra.yml.erb"
     owner "root"
     group "root"
     mode "0644"
