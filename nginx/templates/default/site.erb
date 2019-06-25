@@ -4,7 +4,7 @@ server {
   access_log  <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
 
   <% if node[:nginx][:app_config] && node[:nginx][:app_config][@application_name] %>
-  <% if node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
+  <% if node[:nginx][:app_config][@application_name][:keepalive_timeout] %>;
   keepalive_timeout <%= node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
   <% end %>
   <% end %>
@@ -48,7 +48,7 @@ server {
 
   <% if node[:nginx][:app_config] && node[:nginx][:app_config][@application_name] %>
   <% if node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
-  keepalive_timeout <%= node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
+  keepalive_timeout <%= node[:nginx][:app_config][@application_name][:keepalive_timeout] %>;
   <% end %>
   <% end %>
 
