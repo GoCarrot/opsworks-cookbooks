@@ -40,6 +40,12 @@ server {
   ssl_client_certificate <%= node[:nginx][:dir] %>/ssl/<%= @application[:domains].first %>.ca;
   <% end -%>
 
+  <% if node[:nginx][:app_config] && node[:nginx][:app_config][@application_name] %>
+  <% if node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
+  keepalive_timeout <%= node[:nginx][:app_config][@application_name][:keepalive_timeout] %>
+  <% end %>
+  <% end %>
+
   location / {
     root   <%= @application[:absolute_document_root] %>;
     index  index.html index.htm index.php;
