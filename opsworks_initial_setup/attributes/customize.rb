@@ -11,3 +11,4 @@
 #normal[:opsworks_initial_setup][:sysctl]['net.ipv4.tcp_keepalive_time'] = 2048
 
 default[:opsworks_initial_setup][:limits][:nofile] = 262144
+default[:opsworks_initial_setup][:sysctl]['net.core.somaxconn'] = 4096
