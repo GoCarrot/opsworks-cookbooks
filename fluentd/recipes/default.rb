@@ -1,5 +1,5 @@
 gem_package "fluentd" do
-  version "0.14.18"
+  version "0.14.25"
 end
 
 gem_package "fluent-plugin-mysql" do
