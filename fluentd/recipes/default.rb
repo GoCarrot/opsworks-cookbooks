@@ -7,9 +7,18 @@ gem_package "fluent-plugin-mysql" do
   version "0.1.5.1"
 end
 
-gem_package "fluent-plugin-sidekiq"
-gem_package "fluent-plugin-bufferize"
-gem_package "fluent-plugin-out-http"
+gem_package "fluent-plugin-sidekiq" do
+  version "0.0.5"
+end
+
+gem_package "fluent-plugin-bufferize" do
+  version "0.0.2"
+end
+
+gem_package "fluent-plugin-out-http" do
+  version "1.2.0"
+end
+
 gem_package "fluent-plugin-cloudwatch-logs" do
   source "https://repo.fury.io/alexsc/"
   version "0.4.2"
