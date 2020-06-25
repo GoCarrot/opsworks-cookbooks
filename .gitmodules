@@ -2,5 +2,5 @@
 	path = aws-elb-registration
 	url = git://github.com/AlexSc/aws-elb-registration-cookbook.git
 [submodule "opswork_clockwork"]
-	path = opswork_clockwork
+	path = opsworks_clockwork
 	url = git://github.com/GoCarrot/opsworks_clockwork_cookbook.git
