@@ -4,7 +4,7 @@ end
 
 gem_package "fluent-plugin-mysql" do
   source "https://repo.fury.io/alexsc/"
-  version "0.1.5.1"
+  version "0.1.5.2"
 end
 
 gem_package "fluent-plugin-sidekiq" do
