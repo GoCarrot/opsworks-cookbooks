@@ -1,3 +1,9 @@
+# msgpack 1.4.x changed the minimum required ruby version from 0 to 2.4
+# Until we're on Ruby 2.4+, pin to msgpack 1.3.3
+gem_package "msgpack" do
+  version "1.3.3"
+end
+
 gem_package "fluentd" do
   version "0.14.25"
 end
