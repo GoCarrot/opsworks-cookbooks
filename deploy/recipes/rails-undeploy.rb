@@ -61,6 +61,15 @@ node[:deploy].each do |application, deploy|
     raise 'Unsupported Rails stack'
   end
 
+  # Be a good citizen and clean up our gems.
+  directory "#{node[:deploy][application][:home]}/.bundler/#{application}}" do
+    recursive true
+    action :delete
+    only_if do
+      File.exists?("#{node[:deploy][application][:home]}/.bundler/#{application}}")
+    end
+  end
+
   directory "#{deploy[:deploy_to]}" do
     recursive true
     action :delete
